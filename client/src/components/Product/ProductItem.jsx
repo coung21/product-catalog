@@ -1,7 +1,13 @@
 import React from 'react'
 import {BiTrash} from 'react-icons/bi'
+import { useDispatch } from 'react-redux';
+import { deleteData } from '../../store/dataSlice';
 
 function ProductItem({id, name, desc, price}) {
+  const dispatch = useDispatch()
+  function deleteProductHandler(){
+    dispatch(deleteData(id))
+  }
   return (
     <li className='my-6 mx-4 flex justify-between items-center px-7 border-gray-800 border-2 p-3 rounded-md'>
       <div className=''>
@@ -12,7 +18,7 @@ function ProductItem({id, name, desc, price}) {
         <span className='text-lg text-yellow-800'>${price}</span>
       </div>
       <div className=''>
-        <button type='button' className=''>
+        <button type='button' className='' onClick={deleteProductHandler}>
           <BiTrash size={20} color='red'/>
         </button>
       </div>

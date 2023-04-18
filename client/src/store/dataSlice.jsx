@@ -15,6 +15,11 @@ export const postData = createAsyncThunk('data/postData', async (payload) => {
   return response.data
 })
 
+export const deleteData = createAsyncThunk('data/deleteData' , async (payload) => {
+  const response = await axios.delete(`http://localhost:5000/api/product/${payload}`)
+  return response.data
+})
+
 const dataSlice = createSlice({
   name: 'data',
   initialState,
@@ -25,6 +30,8 @@ const dataSlice = createSlice({
       state.data = action.payload
     }).addCase(postData.fulfilled,  (state, action) => {
        state.data = [...state.data, action.payload]
+    }).addCase(deleteData.fulfilled, (state, action) => {
+      state.data = state.data.filter(item => item['_id'] !== action.payload['_id'])
     })
   }
 })
