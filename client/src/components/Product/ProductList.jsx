@@ -1,18 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import ProductItem from './ProductItem'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../../store/dataSlice';
 
 function ProductList() {
-  const [products, setProducts] = useState([])
+  const products = useSelector(state => state.data.data)
+  const dispatch = useDispatch()
   useEffect(() => {
-    const fetchProductList = async () => {
-      const response = await axios.get('http://localhost:5000/api/product');
-      const data = await response.data
-      console.log(data)
-      setProducts([...data])
-    }
-    fetchProductList()
-  }, [])
+    dispatch(fetchData())
+  }, [dispatch])
   return (
     <div className='basis-2/3 overflow-y-scroll'>
       <ul className='mt-5'>

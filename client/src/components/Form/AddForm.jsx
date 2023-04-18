@@ -1,16 +1,20 @@
 import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { postData } from '../../store/dataSlice';
 
 function AddForm() {
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('')
   const [price, setPrice] = useState('')
+  const dispatch = useDispatch()
   function submitHandler(e){
     e.preventDefault();
     const data = {
-      title: title,
+      name: title,
       description: desc,
       price: price,
     };
+    dispatch(postData(data))
     console.log(data); // post data to http://localhost:5000/api/product/
     setTitle('');
     setDesc('');
