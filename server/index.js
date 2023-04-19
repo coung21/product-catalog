@@ -16,7 +16,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-//route
+//route product
 app.use('/api/product', products)
 
 
