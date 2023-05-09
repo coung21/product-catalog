@@ -36,7 +36,7 @@ const dataSlice = createSlice({
     builder.addCase(fetchData.fulfilled,  (state, action) => {
       state.data = action.payload
     }).addCase(postData.fulfilled,  (state, action) => {
-       state.data = [...state.data, action.payload]
+       state.data = [action.payload,...state.data]
     }).addCase(deleteData.fulfilled, (state, action) => {
       state.data = state.data.filter(item => item['_id'] !== action.payload['_id'])
     }).addCase(updateData.fulfilled, (state, action) => {

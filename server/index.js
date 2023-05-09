@@ -20,14 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/api/product', products)
 
 
-//connect to database
-mongoose.connect(process.env.URI)
-.then(() => {
+
   app.listen(PORT, ()=>{
     console.log('App is running')
   })
-  console.log('connected to database')
-})
-.catch((err) => {
-  console.log(err)
-})
