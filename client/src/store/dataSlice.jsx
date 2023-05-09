@@ -17,11 +17,12 @@ export const postData = createAsyncThunk('data/postData', async (payload) => {
 
 export const deleteData = createAsyncThunk('data/deleteData' , async (payload) => {
   const response = await axios.delete(`http://localhost:5000/api/product/${payload}`)
+    console.log(response.data);
   return response.data
 })
 export const updateData = createAsyncThunk('data/updateData', async(payload) => {
   const response = await axios.patch(
-    `http://localhost:5000/api/product/${payload['_id']}`,
+    `http://localhost:5000/api/product/${payload['id']}`,
     payload.data
   );
   return response.data;
@@ -38,9 +39,9 @@ const dataSlice = createSlice({
     }).addCase(postData.fulfilled,  (state, action) => {
        state.data = [action.payload,...state.data]
     }).addCase(deleteData.fulfilled, (state, action) => {
-      state.data = state.data.filter(item => item['_id'] !== action.payload['_id'])
+      state.data = state.data.filter(item => item['id'] !== action.payload['id'])
     }).addCase(updateData.fulfilled, (state, action) => {
-      const index = state.data.findIndex(item => item['_id'] === action.payload['_id'])
+      const index = state.data.findIndex(item => item['id'] === action.payload['id'])
       state.data[index] = action.payload
     })
   }

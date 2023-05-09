@@ -13,7 +13,7 @@ function ProductList() {
   return (
     <div className='basis-2/3 overflow-y-scroll'>
       <ul className='mt-5'>
-      {products.map(item => <ProductItem key={item._id} id={item._id} name={item.name} desc={item.description} price={item.price} />)}
+      {products.map(item => <ProductItem key={item.id} id={item.id} name={item.name} desc={item.description} price={item.price} />)}
       </ul>
     </div>
   )

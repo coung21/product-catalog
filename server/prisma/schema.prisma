@@ -1,0 +1,17 @@
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model product {
+  id Int @id @default(autoincrement())
+  name String @default("")
+  description String @default("")
+  price Decimal @default(0)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}

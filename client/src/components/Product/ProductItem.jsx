@@ -16,7 +16,7 @@ function ProductItem({id, name, desc, price}) {
   function updateProductHandler(e) {
     e.preventDefault();
     const payload = {
-      _id: id,
+      id: id,
       data: {
         name: nameValue,
         description: descValue,
